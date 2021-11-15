@@ -12,6 +12,7 @@ let finalLinePlotData=[];
 let TimeOut = 5000;
 let checkBoxStatus=false;
 let islimit = false;
+document.getElementById('limitEnable').style.display = 'block';
 
 // Debug-below function for testing lambda value
 // function preSetExample(e){
