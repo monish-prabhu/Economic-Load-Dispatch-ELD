@@ -1,1 +1,2 @@
 # Economic-Load-Dispatch-ELD
+In power generation, the main aim is to generate the required amount of power with minimum cost. Economic Load Dispatch or ELD in short means that the generator's power are allowed to vary within limits so as to meet a particular load demand with minimum fuel cost. In this project, the λ-iteration method is used to calculate Economic Load Dispatch, neglecting transmission losses. The λ-iteration method is elaborated [here](https://drive.google.com/file/d/15tJAA6DyS1uHKEsOlVDab3Bm4l7jIE4-/view?usp=sharing).
