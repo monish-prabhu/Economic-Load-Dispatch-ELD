@@ -151,7 +151,7 @@ function saveEntry(entryNo){
     pmax = document.getElementById('pmax-'+entryNo);
     pmin_Values[entryNo] = pmin.innerHTML = Number(pmin_value);
     pmax_Values[entryNo] = pmax.innerHTML = Number(pmax_value);
-    }        
+    }     
 }
 
 function compute(){
@@ -319,6 +319,10 @@ function calcApproachIterative(islimit){
     let date = new Date();
     startTime = date.getTime();
     console.log('islimit value inside calcIter(): ',islimit);
+    pmax_Values.forEach((ele, index, arr)=>{if(Number.isNaN(arr[index])||arr[index]=='-') arr[index]=Number.POSITIVE_INFINITY;})
+    pmin_Values.forEach((ele, index, arr)=>{if(Number.isNaN(arr[index])||arr[index]=='-') arr[index]=0;})  
+    console.log(pmax_Values);
+    console.log(pmin_Values);
     while(Math.abs(dP)>0.001){
         let end = new Date().getTime();
         if(end-startTime>TimeOut)
@@ -328,11 +332,12 @@ function calcApproachIterative(islimit){
                 return;
             }
         resultPowersIter = b_Values.map((b,i)=>{return (lambda_iter-b)/(2*a_Values[i])});
-        
-        if(islimit){
-            resultPowersIter = resultPowersIter.map((P,i)=> {return Math.min(P,pmax_Values[i])});
-            resultPowersIter = resultPowersIter.map((P,i)=> {return Math.max(P,pmin_Values[i])});
-        }
+
+              
+            
+        resultPowersIter = resultPowersIter.map((P,i)=> {return Math.min(P,pmax_Values[i])});
+        resultPowersIter = resultPowersIter.map((P,i)=> {return Math.max(P,pmin_Values[i])});
+            
         sumP = resultPowersIter.reduce((a,b)=>{return a+b},0);
         dP = D-sumP;
         lambda_iter += (2*dP)/(a_Values.map((a)=>{return (1/a)}).reduce((a,b)=>a+b,0));
