@@ -237,10 +237,10 @@ function plotIncrementalCost(){
         width: 500,
         title:'Incremental Cost Curves',
         xaxis: {
-        title: 'P →'
+        title: 'P (MW) →'
         },
         yaxis: {
-        title: 'dC/dP →'
+        title: 'dC/dP (₹/MWh) →'
         }
       }
       Plotly.newPlot('incrementalCostPlot',finalLinePlotData,linePlotLayout);
@@ -292,7 +292,7 @@ function plotPieChart(divIDs){
 
 function drawResultTable(tableID){
     let resultTableHead = '<table class="table"><thead class="thead-dark">'
-    resultTableHead += '<tr><th>Generator</th><th>Power (MW)</th><th>Cost</th></thead></tr>'
+    resultTableHead += '<tr><th>Generator</th><th>Power (MW)</th><th>Cost (₹/h)</th></thead></tr>'
     let resultTableBody = '<tbody>';
     let resultP,resultC;
     
@@ -364,7 +364,7 @@ function addLambdaLine(){
         x: [0,Pd],
         y: [lambda_iter,lambda_iter],
         mode: 'lines',
-        name: `λ-lambda`,
+        name: `λ`,
         line:{
             dash:'dot',
             width:4
@@ -374,7 +374,7 @@ function addLambdaLine(){
 
 function addCostEquations(){
     let eqTableHead = '<table class="table"><thead class="thead-dark">'
-    eqTableHead += '<tr><th>Generator</th><th>Cost Function</th><th>Incremental Cost Function</th></tr></thead>'
+    eqTableHead += '<tr><th>Generator</th><th>Cost Function (₹/h)</th><th>Incremental Cost Function (₹/MWh)</th></tr></thead>'
     let eqTableBody = '<tbody>';
 
     for(let i=0;i<a_Values.length;i++)
@@ -388,7 +388,7 @@ function displayPd(){
 }
 
 function displayLambda(){
-    document.getElementById('lambda').innerHTML = `&lambda; = ${lambda_iter.toFixed(3)}`;
+    document.getElementById('lambda').innerHTML = `&lambda; = ${lambda_iter.toFixed(3)} ₹/MWh`;
 }
 
 function readInputFile(){
